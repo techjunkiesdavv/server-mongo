@@ -20,8 +20,8 @@ export const signin = async (req, res) => {
     console.log("wrong");
     return res.status(400).json({ message: "Invalid credentials" });}
 
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id },'test', { expiresIn: "1h" });
-    
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id },'test', { expiresIn: "1h" } );
+
 
     res.status(200).json({ result:oldUser,  token });
   } catch (err) {
@@ -30,7 +30,7 @@ export const signin = async (req, res) => {
 };
 
 
-
+// sorry for the trouble
 export const signup = async(req,res)=>{
     const {firstName,lastName,email,password}=obj;
     console.log(email);
