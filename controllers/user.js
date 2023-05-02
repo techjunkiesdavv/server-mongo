@@ -7,8 +7,6 @@ export const signin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    console.log(email);
-    console.log(password);
     const oldUser = await User.findOne({ email });
 
     if (!oldUser) 
