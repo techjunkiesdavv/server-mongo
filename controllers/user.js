@@ -11,6 +11,7 @@ export const signin = async (req, res) => {
 
     if (!oldUser) 
     return res.status(404).json({ message: "User doesn't exist" });
+<<<<<<< HEAD
     if (password!==oldUser.password) {
       console.log("wrong");
       return res.status(400).json({ message: "Invalid credentials" });}
@@ -23,3 +24,20 @@ export const signin = async (req, res) => {
       res.status(500).json({ message: "Something went wrong" });
     }
   };
+=======
+
+    // const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
+
+    if (password!==oldUser.password) {
+    console.log("wrong");
+    return res.status(400).json({ message: "Invalid credentials" });}
+
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id },'test', { expiresIn: "1h" } );
+
+
+    res.status(200).json({ result:oldUser,  token });
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+>>>>>>> 86c6d58a60e9c1ea1e7f89ca1397843b212a1053
