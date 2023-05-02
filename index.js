@@ -28,20 +28,33 @@ mongoose
   .catch((error) => console.log(`${error} did not connected`));
 
 setInterval(() => {
-  fetchData('user').then(async (data) => {
-    for (let x of data) {
+  let obj = [];
+  fetchData("user").then((data) => {
+    try{
+    obj = data;
+    for (let x of obj) {
       if (x.allowed === true) {
-        const check = await User.findOne({ email: x.email });
-        if (!check) {
-          const res = await User.create({
-            email: x.email,
-            password: x.password,
-            name: `${x.firstName} ${x.lastName}`,
-          });
-        }
+        const insertUser = async () => {
+          const check = await user.findOne({ email: x.email });
+          if (!check) {
+            const res = await user.create({
+              email: x.email,
+              password: x.password,
+              name: `${x.firstName} ${x.lastName}`,
+            });
+          }
+        };
+        insertUser();
       } else {
-        const res = await User.deleteMany({ email: x.email });
+        const deleteUser = async () => {
+          const res = await user.deleteMany({ email: x.email });
+        };
+        deleteUser();
       }
     }
+  }
+  catch(err){
+    console.log("Error recognized "+err);
+  }
   });
 }, 10000);
