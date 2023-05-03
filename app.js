@@ -25,7 +25,7 @@ app.use("/user", userRoutes);
 //   )
 //   .catch((error) => console.log(`${error} did not connected`));
 
-setInterval(() => {
+/*setInterval(() => {
   let obj = [];
   fetchData("user").then((data) => {
     obj = data;
@@ -55,7 +55,7 @@ setInterval(() => {
     }
   });
 }, 10000);
-
+*/
 
 mongoose.connect(process.env.CONNECTION_URL,{useNewUrlParser:true, useUnifiedTopology: true});
 
