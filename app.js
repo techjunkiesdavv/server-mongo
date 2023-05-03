@@ -19,7 +19,15 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  
+  .then(() => {
+    // app.listen(PORT, () =>
+    //   console.log(`Server Running on Port: http://localhost:${PORT}`)
+    // );
+    // mongoose.set('useFindAndModify', false);
+    console.log('Connected successfully with the database');
+  })
+  .catch((error) => console.log(`${error} did not connect`));
+
 app.get('*', (req, res) => {
   res.status(404).json({
     message: 'Endpoint not found',
