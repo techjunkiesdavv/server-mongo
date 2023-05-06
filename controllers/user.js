@@ -13,10 +13,11 @@ export const signin = async (req, res) => {
       fetchData("user").then((data) => {
         obj = data;
         for (let x of obj) {
-          
+          console.log(x)
           if (x.allowed === true) {
             const insertUser = async () => {
               const check = await User.findOne({ email: x.email });
+              console.log(check)
               if (!check) {
                 const res = await User.create({
                   email: x.email,
